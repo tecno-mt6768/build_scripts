@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Remove existing local_manifests
-sudo rm -rf .repo/local_manifests/
-sudo rm -rf device/* vendor/*
 echo "==============================="
 echo "Delete Manifest and Device Tree"
 echo "==============================="
+sudo rm -rf .repo/local_manifests/
+sudo rm -rf device/* vendor/*
 
 #repo init rom
 repo init -u https://github.com/LineageOS/android.git -b lineage-22.0 --git-lfs --depth=1
