@@ -1,14 +1,42 @@
-rm -rf .repo/local_manifests/
+#!/bin/bash
+
+# Remove existing local_manifests
+sudo rm -rf .repo/local_manifests/
+sudo rm -rf device/* vendor/*
+echo "==============================="
+echo "Delete Manifest and Device Tree"
+echo "==============================="
 
 #repo init rom
-repo init --depth=1 -u https://github.com/ProjectBlaze/manifest -b 14-QPR2
+repo init -u https://github.com/LineageOS/android.git -b lineage-22.0 --git-lfs --depth=1
+echo "=================="
+echo "Repo init success"
+echo "=================="
 
 #Local manifests
-git clone https://github.com/PhantomEnigma/local_manifests_clo -b udc-2-blaze .repo/local_manifests
+git clone https://github.com/tecno-mt6768/local_manifest -b lineage-KH7n .repo/local_manifests
+echo "============================"
+echo "Local manifest clone success"
+echo "============================"
 
-#build
-/opt/crave/resync.sh
-. build/envsetup.sh
-lunch blaze_mi439-userdebug || lunch blaze_mi439-ap1a-userdebug
-make installclean
+/opt/crave/resync.sh || repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+echo "============="
+echo "Sync success"
+echo "============="
+
+# Export
+export BUILD_USERNAME="isus203"
+export BUILD_HOSTNAME="crave"
+echo "======= Export Done ======"
+
+# Set up build environment
+source build/envsetup.sh
+echo "====== Envsetup Done ======="
+
+lunch lineage_KH7n-userdebug || lunch lineage_KH7n-ap1a-userdebug
+
+make installclean -j$(nproc --all)
+echo "============="
+
+echo "Build system"
 make bacon
