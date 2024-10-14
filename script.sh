@@ -14,7 +14,7 @@ echo "Repo init success"
 echo "=================="
 
 #Local manifests
-git clone https://github.com/tecno-mt6768/local_manifest -b lineage-KH7n .repo/local_manifests
+git clone https://github.com/tecno-mt6768/local_manifest -b hentai-heaven .repo/local_manifests
 echo "============================"
 echo "Local manifest clone success"
 echo "============================"
@@ -33,7 +33,7 @@ echo "======= Export Done ======"
 source build/envsetup.sh
 echo "====== Envsetup Done ======="
 
-lunch lineage_KH7n-userdebug || lunch lineage_KH7n-ap1a-userdebug
+lunch lineage_Hentai-Heaven-userdebug || lunch lineage_Hentai-Heaven-ap1a-userdebug
 
 make installclean -j$(nproc --all)
 echo "============="
