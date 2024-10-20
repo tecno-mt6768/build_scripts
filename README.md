@@ -1,6 +1,6 @@
 # Build lineage for Hentai-heaven
 
-# build_scripts
+## build_scripts
 
 ```
 curl https://raw.githubusercontent.com/tecno-mt6768/build_scripts/hentai-heaven/script.sh | bash
